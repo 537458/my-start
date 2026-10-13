@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RecyclerView 相关 ID -->
+    <item name="recycler_view_original_data" type="id"/>
+    <item name="recycler_view_loading_progress" type="id"/>
+</resources>

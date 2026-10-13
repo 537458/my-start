@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="8dp">
+
+    <!-- AI消息 -->
+    <LinearLayout
+        android:id="@+id/ll_ai_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_message_ai"
+            android:padding="12dp"
+            android:maxWidth="240dp">
+
+            <TextView
+                android:id="@+id/tv_ai_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI消息"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- 用户消息 -->
+    <LinearLayout
+        android:id="@+id/ll_user_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_message_user"
+            android:padding="12dp"
+            android:maxWidth="240dp">
+
+            <TextView
+                android:id="@+id/tv_user_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户消息"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

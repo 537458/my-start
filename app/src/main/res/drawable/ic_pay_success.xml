@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+    <!-- 外层浅色光晕 -->
+    <path
+        android:fillColor="#1FFF6B6B"
+        android:pathData="M64,4a60,60 0 1,0 0.1,0z" />
+    <!-- 主色圆底 -->
+    <path
+        android:fillColor="#FF6B6B"
+        android:pathData="M64,18a46,46 0 1,0 0.1,0z" />
+    <!-- 白色对勾 -->
+    <path
+        android:pathData="M42,66 L57,81 L87,50"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="9"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

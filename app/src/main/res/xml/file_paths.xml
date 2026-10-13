@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- 拍照输出：缓存目录下的 avatar 子目录 -->
+    <cache-path
+        name="avatar_cache"
+        path="avatar/" />
+    <cache-path
+        name="cache_root"
+        path="." />
+</paths>

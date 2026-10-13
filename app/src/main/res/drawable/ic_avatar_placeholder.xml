@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 默认头像：品牌色渐变圆底 + 白色肉爪，替代原来单调的灰圆 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <size
+                android:width="48dp"
+                android:height="48dp" />
+            <gradient
+                android:angle="315"
+                android:endColor="#FF6B6B"
+                android:startColor="#FFA38F"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <item
+        android:width="24dp"
+        android:height="24dp"
+        android:drawable="@drawable/ic_paw"
+        android:gravity="center" />
+</layer-list>

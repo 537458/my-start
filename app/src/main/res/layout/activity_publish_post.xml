@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorWhite"
+        android:elevation="2dp"
+        android:title="发布动态"
+        android:titleTextColor="@color/colorTextPrimary" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/et_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:gravity="top|start"
+                android:hint="分享你和宠物的日常…"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine|textCapSentences"
+                android:lineSpacingExtra="3dp"
+                android:maxLength="1000"
+                android:minHeight="150dp"
+                android:padding="14dp"
+                android:textColor="@color/colorTextPrimary"
+                android:textColorHint="@color/colorTextLight"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="end"
+                android:text="0/1000"
+                android:textColor="@color/colorTextLight"
+                android:textSize="11sp" />
+
+            <!-- 谁可以看：公开 / 仅自己可见 -->
+            <LinearLayout
+                android:id="@+id/ll_visibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="14dp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:contentDescription="可见范围"
+                    android:src="@drawable/ic_lock" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:text="谁可以看"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_visibility_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="公开"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:contentDescription="选择可见范围"
+                    android:src="@drawable/ic_arrow_right" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_image_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="添加图片（最多 6 张）"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="13sp" />
+
+            <!-- 已选图片与「添加」按钮由代码填充，每行 3 张自动换行 -->
+            <LinearLayout
+                android:id="@+id/ll_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_publish"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="发布"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            app:backgroundTint="@color/colorPrimary"
+            app:cornerRadius="24dp" />
+    </LinearLayout>
+
+</LinearLayout>

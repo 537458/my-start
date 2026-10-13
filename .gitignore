@@ -1,0 +1,51 @@
+# ---- Gradle / 构建产物 ----
+.gradle/
+build/
+local.properties
+
+# ---- Android 编译输出 ----
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+.cxx/
+app/release/
+
+# ---- 签名与密钥 ----
+*.keystore
+*.jks
+!debug.keystore
+
+# ---- IDE ----
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# ---- 日志 / 临时文件 ----
+*.log
+logs/
+backend/logs/
+backend/upload/
+backend/target/
+.tmp_*
+
+# ---- 环境变量（密钥不进仓库）----
+.env
+*.env.local
+!.env.example
+
+# ---- 本地调试产物 / 个人配置 ----
+.claude/
+.db-backup/
+/05CC15ED05BEED365A1549481C542122.jpg
+
+# ---- 系统文件 ----
+.DS_Store
+Thumbs.db
+desktop.ini

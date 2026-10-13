@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/colorWhite"
+        app:navigationIcon="@drawable/ic_back">
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:id="@+id/ll_privacy"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="隐私设置"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextPrimary" />
+
+            <android.widget.ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorTextSecondary" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorLightGray"
+            android:layout_marginLeft="16dp" />
+
+        <LinearLayout
+            android:id="@+id/ll_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="意见反馈"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextPrimary" />
+
+            <android.widget.ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorTextSecondary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:id="@+id/ll_device_type"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="设备类型"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextPrimary" />
+
+            <TextView
+                android:id="@+id/tv_device_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="模拟器"
+                android:textSize="14sp"
+                android:textColor="@color/colorTextSecondary"
+                android:paddingEnd="8dp" />
+
+            <android.widget.ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorTextSecondary" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorLightGray"
+            android:layout_marginLeft="16dp" />
+
+        <LinearLayout
+            android:id="@+id/ll_api_url"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="服务器地址"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextPrimary" />
+
+            <TextView
+                android:id="@+id/tv_api_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自动检测"
+                android:textSize="12sp"
+                android:textColor="@color/colorTextSecondary"
+                android:paddingEnd="8dp"
+                android:maxWidth="150dp"
+                android:ellipsize="end"
+                android:maxLines="1" />
+
+            <android.widget.ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorTextSecondary" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

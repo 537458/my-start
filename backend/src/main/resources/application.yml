@@ -1,0 +1,95 @@
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 开启二级缓存
+    cache-enabled: true
+    # 延迟加载
+    lazy-loading-enabled: true
+    #  agressivelyLazyLoading 关闭，避免不必要的加载
+    aggressively-lazy-loading: false
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath:mapper/*.xml
+  type-handlers-package: com.petshop.handler
+
+spring:
+  application:
+    name: petshop-backend
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+  web:
+    resources:
+      static-locations: classpath:/static/,file:./upload/
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL:jdbc:mysql://localhost:3306/petshop?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:123456}
+    
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: PetShopHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+      # 新增性能优化配置
+      validation-timeout: 3000
+      leak-detection-threshold: 60000
+      # 查询超时配置（秒）
+      query-timeout: 30
+
+server:
+  port: ${SERVER_PORT:8080}
+  address: 0.0.0.0
+  servlet:
+    context-path: /api
+
+jwt:
+  # 必须通过 JWT_SECRET 注入至少 32 位的随机密钥；
+  # 未配置时启动会生成本次运行专用的随机密钥，重启后旧 token 全部失效
+  secret: ${JWT_SECRET:}
+  expiration: ${JWT_EXPIRATION:86400000}
+
+# 短信验证码：本地联调可置 true，验证码只写入本地运行日志，接口响应永不回显
+petshop:
+  sms:
+    demo-mode: ${SMS_DEMO_MODE:false}
+
+# 讯飞星火 AI 配置（使用 x2 接口）
+# 生产环境必须通过环境变量注入真实密钥，切勿将密钥写入仓库；未配置时 AI 接口会直接返回未启用
+xunfei:
+  appid: ${XUNFEI_APPID:}
+  apikey: ${XUNFEI_APIKEY:}
+  apisecret: ${XUNFEI_APISECRET:}
+  apipassword: ${XUNFEI_APIPASSWORD:}
+
+logging:
+  level:
+    root: WARN
+    com.petshop: INFO
+    com.petshop.controller: DEBUG
+    com.petshop.service: DEBUG
+    com.petshop.mapper: DEBUG
+    org.springframework.security: WARN
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+  file:
+    name: logs/petshop.log
+    max-size: 10MB
+    max-history: 30
+  # 敏感信息脱敏配置
+  sensitive:
+    enabled: true
