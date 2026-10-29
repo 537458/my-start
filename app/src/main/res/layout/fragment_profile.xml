@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundLight"
+    android:background="@color/colorLightGray"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
     tools:context=".fragment.ProfileFragment">
@@ -124,11 +124,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="-36dp"
+            android:layout_marginTop="-28dp"
             app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardUseCompatPadding="true">
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -333,16 +332,15 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- 功能菜单卡片 -->
+        <!-- 功能菜单卡片：所有入口列表合并为一张 -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="12dp"
             app:cardBackgroundColor="@color/colorWhite"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="6dp"
-            app:cardUseCompatPadding="true">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -585,7 +583,7 @@
                             <ImageView
                                 android:layout_width="26dp"
                                 android:layout_height="26dp"
-                                android:src="@drawable/ic_payment"
+                                android:src="@drawable/ic_coupon"
                                 android:tint="@color/colorWhite" />
                         </LinearLayout>
 
@@ -675,24 +673,12 @@
                         android:src="@drawable/ic_arrow_right"
                         android:tint="@color/colorTextLight" />
                 </RelativeLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <!-- 设置与关于卡片 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/colorWhite"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="6dp"
-            app:cardUseCompatPadding="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="84dp"
+                    android:background="@color/colorDividerLight" />
 
                 <!-- 设置 -->
                 <RelativeLayout
@@ -796,19 +782,26 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- 退出登录按钮 -->
-        <Button
+        <!-- 退出登录：用 MaterialButton 而不是 Button，
+             否则 Material 主题会给它套上 colorPrimary 实心填充，盖掉自己设的样式 -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_logout"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/bg_button_logout_new"
+            android:layout_height="52dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:text="退出登录"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorDanger"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:backgroundTint="@color/colorWhite"
+            app:cornerRadius="16dp"
+            app:rippleColor="@color/colorLightGray"
+            app:strokeColor="@color/colorDivider"
+            app:strokeWidth="1dp" />
 
         <!-- 底部间距 -->
         <View

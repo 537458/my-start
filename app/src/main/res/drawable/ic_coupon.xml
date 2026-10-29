@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 优惠券：描边票券 + 中间撕开虚线，颜色由使用处的 tint 决定 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="@android:color/white"
+        android:strokeWidth="2"
+        android:pathData="M3,6L21,6L21,18L3,18Z" />
+
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M11.3,8.4L12.9,8.4L12.9,10.3L11.3,10.3Z" />
+
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M11.3,11.1L12.9,11.1L12.9,13L11.3,13Z" />
+
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M11.3,13.8L12.9,13.8L12.9,15.7L11.3,15.7Z" />
+</vector>

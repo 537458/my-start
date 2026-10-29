@@ -120,8 +120,9 @@ public class CategoryFragment extends Fragment {
                             cat.setName(c.getName());
                             categoryList.add(cat);
                         }
-                        categories.clear();
-                        categories.addAll(categoryList);
+                        // 换引用而不是 clear/addAll：CategoryLeftAdapter 构造时拿的就是
+                        // categories 这个对象，先改它等于把 DiffUtil 的“旧列表”也改成了新内容
+                        categories = categoryList;
                         categoryLeftAdapter.updateData(categoryList);
                         selectedCategoryId = list.get(0).getId();
                         showContent();
@@ -152,33 +153,36 @@ public class CategoryFragment extends Fragment {
             public void onResponse(Call<ApiService.Response<List<Product>>> call,
                                    Response<ApiService.Response<List<Product>>> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getCode() == 200) {
-                    List<Product> list = response.body().getData();
-                    if (list != null) {
-                        products.clear();
-                        products.addAll(list);
-                        productAdapter.updateData(list);
-                        updateProductEmptyState(list.isEmpty());
-                    } else {
-                        products.clear();
-                        productAdapter.updateData(new ArrayList<>());
-                        updateProductEmptyState(true);
-                    }
+                    applyProducts(response.body().getData());
                 } else {
-                    products.clear();
-                    productAdapter.updateData(new ArrayList<>());
-                    updateProductEmptyState(true);
+                    applyProducts(null);
                     Toast.makeText(getContext(), "加载商品失败", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ApiService.Response<List<Product>>> call, Throwable t) {
-                products.clear();
-                productAdapter.updateData(new ArrayList<>());
-                updateProductEmptyState(true);
+                applyProducts(null);
                 Toast.makeText(getContext(), "加载商品失败：" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    /**
+     * 刷新右侧商品区。
+     * 必须先换引用再交给 updateData，不能先 products.clear()/addAll()：
+     * ProductAdapter 构造时传入的就是 products 这个 List（BaseAdapter 直接持有引用），
+     * 先改它会让 DiffUtil 以为新旧列表完全一致，算出零变化、一条通知都不发，
+     * 而商品区的首帧布局在 showContent() 时就以 0 条完成了，
+     * 表现为第一次进分类页右侧全空，切一次分类才出数据。
+     */
+    private void applyProducts(List<Product> list) {
+        if (productAdapter == null) {
+            return;
+        }
+        products = list != null ? list : new ArrayList<>();
+        productAdapter.updateData(products);
+        updateProductEmptyState(products.isEmpty());
     }
 
     /** 切换右侧商品区与“该分类暂无商品”提示的显示 */

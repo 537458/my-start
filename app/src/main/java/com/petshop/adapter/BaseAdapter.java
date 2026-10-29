@@ -44,6 +44,13 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
             newDataList = new ArrayList<>();
         }
 
+        // 调用方把自己的 List 传进构造器时，dataList 与它是同一个对象；
+        // 这种情况下 DiffUtil 算不出任何变化，只能全量刷新兜底
+        if (this.dataList == newDataList) {
+            notifyDataSetChanged();
+            return;
+        }
+
         DiffUtilCallback<T> diffCallback = new DiffUtilCallback<>(this.dataList, newDataList, itemCallback);
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
         this.dataList = newDataList;

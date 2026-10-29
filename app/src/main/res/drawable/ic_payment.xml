@@ -1,6 +1,22 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <solid android:color="#4CAF50" />
-    <size android:width="24dp" android:height="24dp" />
-    <corners android:radius="4dp" />
-</shape>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 银行卡：描边卡体 + 磁条 + 卡号，颜色由使用处的 tint 决定 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="@android:color/white"
+        android:strokeWidth="2"
+        android:pathData="M3,6.5L21,6.5L21,17.5L3,17.5Z" />
+
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M3,9.8L21,9.8L21,12.1L3,12.1Z" />
+
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M5.4,14.4L10.2,14.4L10.2,15.9L5.4,15.9Z" />
+</vector>
