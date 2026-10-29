@@ -57,7 +57,7 @@ public class FavoriteActivity extends AppCompatActivity {
 
     private void initView() {
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_back);
+        toolbar.setNavigationIcon(R.drawable.ic_back_dark);
         toolbar.setNavigationOnClickListener(v -> finish());
 
         rvFavorites = findViewById(R.id.rv_favorites);

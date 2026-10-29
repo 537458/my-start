@@ -58,7 +58,7 @@ public class NotificationActivity extends AppCompatActivity {
 
     private void initView() {
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_back);
+        toolbar.setNavigationIcon(R.drawable.ic_back_dark);
         toolbar.setNavigationOnClickListener(v -> finish());
 
         rvNotifications = findViewById(R.id.rv_notifications);

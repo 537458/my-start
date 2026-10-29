@@ -12,8 +12,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorWhite"
         android:elevation="2dp"
-        android:title="添加宠物"
-        android:titleTextColor="@color/colorTextPrimary" />
+        app:title="添加宠物"
+        app:titleTextColor="@color/colorTextPrimary" />
 
     <ScrollView
         android:layout_width="match_parent"

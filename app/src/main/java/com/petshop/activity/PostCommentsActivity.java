@@ -81,7 +81,7 @@ public class PostCommentsActivity extends AppCompatActivity {
 
     private void initView() {
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_back);
+        toolbar.setNavigationIcon(R.drawable.ic_back_dark);
         toolbar.setNavigationOnClickListener(v -> finish());
         String authorName = getIntent().getStringExtra("authorName");
         if (authorName != null && !authorName.isEmpty()) {

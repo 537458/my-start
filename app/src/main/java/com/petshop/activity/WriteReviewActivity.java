@@ -60,6 +60,8 @@ public class WriteReviewActivity extends AppCompatActivity {
 
     private void initView() {
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        // 只设点击监听不设图标的话白底上连个可点的箭头都看不到，用深色版
+        toolbar.setNavigationIcon(R.drawable.ic_back_dark);
         toolbar.setNavigationOnClickListener(v -> finish());
 
         tvOrderNo = findViewById(R.id.tv_order_no);
