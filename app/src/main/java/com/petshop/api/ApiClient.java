@@ -32,9 +32,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
     private static final String TAG = "ApiClient";
     // API地址配置（可通过配置文件或运行时设置修改）
-    private static String BASE_URL_EMULATOR = "http://10.0.2.2:8080/api/";
-    // 真机通过 USB 端口转发访问本机后端：adb reverse tcp:8080 tcp:8080
-    private static String BASE_URL_REAL_DEVICE = "http://127.0.0.1:8080/api/";
+    // 后端固定监听 8081（见 backend/src/main/resources/application.yml 的 SERVER_PORT），
+    // 8080 让给本机其它开发服务，避免抢端口。
+    private static String BASE_URL_EMULATOR = "http://10.0.2.2:8081/api/";
+    // 真机通过 USB 端口转发访问本机后端：adb reverse tcp:8081 tcp:8081
+    private static String BASE_URL_REAL_DEVICE = "http://127.0.0.1:8081/api/";
 
     static {
         // 打 prod 包时可以把公网服务器地址烧进 BuildConfig.API_BASE_URL，
@@ -416,7 +418,7 @@ public class ApiClient {
     
     /**
      * 设置自定义API地址
-     * @param customUrl 自定义API地址，如 "http://192.168.1.5:8080/api/"
+     * @param customUrl 自定义API地址，如 "http://192.168.1.5:8081/api/"
      */
     public static void setCustomBaseUrl(Context context, String customUrl) {
         if (context == null) return;
@@ -452,6 +454,14 @@ public class ApiClient {
 
         // 历史遗留的错误 IP，命中后直接丢弃，避免接口与图片都指向不存在的地址
         if (customUrl != null && !customUrl.isEmpty() && customUrl.contains("10.56.35.56")) {
+            prefs.edit().remove(CUSTOM_BASE_URL_KEY).apply();
+            customBaseUrlCache = null;
+            return null;
+        }
+
+        // 后端已从 8080 迁到 8081，指向本机旧端口的残留地址优先级最高，
+        // 不清掉会让每个请求都白等一次超时，表现成「所有页面都加载不出数据」
+        if (customUrl != null && customUrl.matches("https?://(10\\.0\\.2\\.2|127\\.0\\.0\\.1|localhost):8080(/.*)?")) {
             prefs.edit().remove(CUSTOM_BASE_URL_KEY).apply();
             customBaseUrlCache = null;
             return null;

@@ -25,7 +25,7 @@ android {
 
         // API 配置（支持环境切换）
         // 使用模拟器地址（10.0.2.2是模拟器访问宿主机的地址）
-        buildConfigField "String", "API_BASE_URL", '"http://10.0.2.2:8080/api/"'
+        buildConfigField "String", "API_BASE_URL", '"http://10.0.2.2:8081/api/"'
         buildConfigField "String", "API_TIMEOUT", '"30"'
     }
 
@@ -35,7 +35,7 @@ android {
         dev {
             dimension "env"
             // 开发环境使用模拟器地址（10.0.2.2是模拟器访问宿主机的地址）
-            buildConfigField 'String', 'API_BASE_URL', '"http://10.0.2.2:8080/api/"'
+            buildConfigField 'String', 'API_BASE_URL', '"http://10.0.2.2:8081/api/"'
         }
         prod {
             dimension "env"

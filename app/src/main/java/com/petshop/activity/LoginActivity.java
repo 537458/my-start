@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .setMessage("检测到您正在真机上运行。\n\n" +
                         "当前 API 地址: " + ApiClient.getCurrentBaseUrl(this) + "\n\n" +
                         "真机无法访问 10.0.2.2，请设置您电脑的实际 IP 地址。\n\n" +
-                        "示例: http://192.168.1.100:8080/api/")
+                        "示例: http://192.168.1.100:8081/api/")
                 .setPositiveButton("设置 IP", (dialog, which) -> showSetApiUrlDialog())
                 .setNegativeButton("取消", null)
                 .setCancelable(false)
@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
     private void showSetApiUrlDialog() {
         final android.widget.EditText input = new android.widget.EditText(this);
-        input.setHint("http://192.168.x.x:8080/api/");
+        input.setHint("http://192.168.x.x:8081/api/");
         input.setText(ApiClient.getCustomBaseUrl(this));
 
         new androidx.appcompat.app.AlertDialog.Builder(this)

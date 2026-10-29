@@ -4,7 +4,7 @@
 
 ```
 ┌──────────────┐   HTTP/JSON    ┌──────────────────┐   JDBC   ┌─────────┐
-│ Android App  │ ─────────────▶ │ Spring Boot :8080 │ ───────▶ │ MySQL 8 │
+│ Android App  │ ─────────────▶ │ Spring Boot :8081 │ ───────▶ │ MySQL 8 │
 │  (Retrofit)  │ ◀───────────── │   context = /api  │ ◀─────── │ :3306   │
 └──────────────┘   图片/JSON     └──────────────────┘          └─────────┘
 ```
@@ -57,7 +57,7 @@ java -jar target\petshop-backend-1.0.0.jar
 看到日志 `Started PetShopApplication` 即成功。验证一下：
 
 ```powershell
-curl http://localhost:8080/api/health
+curl http://localhost:8081/api/health
 # {"database":"CONNECTED","message":"PetShop API is running successfully","status":"UP"}
 ```
 
@@ -67,7 +67,7 @@ curl http://localhost:8080/api/health
 
 | 变量 | 默认值 | 说明 |
 | --- | --- | --- |
-| `SERVER_PORT` | `8080` | 后端监听端口 |
+| `SERVER_PORT` | `8081` | 后端监听端口，项目统一用 8081，8080 让给本机其它开发服务 |
 | `DB_URL` | `jdbc:mysql://localhost:3306/petshop?...` | 数据库连接串 |
 | `DB_USERNAME` | `root` | 数据库账号 |
 | `DB_PASSWORD` | `123456` | 数据库密码，**换机器时这个最常需要改** |
@@ -94,19 +94,19 @@ App 的服务器地址按下面的优先级决定：
 
 | 使用场景 | App 实际访问的地址 | 你需要做的 |
 | --- | --- | --- |
-| 安卓模拟器 | `http://10.0.2.2:8080/api/` | 什么都不用做，开箱即用 |
-| USB 线连真机 | `http://127.0.0.1:8080/api/` | 执行一次端口转发：`adb reverse tcp:8080 tcp:8080` |
+| 安卓模拟器 | `http://10.0.2.2:8081/api/` | 什么都不用做，开箱即用 |
+| USB 线连真机 | `http://127.0.0.1:8081/api/` | 执行一次端口转发：`adb reverse tcp:8081 tcp:8081` |
 | 真机无线 / 别人的手机 | `https://xxx/api/`（公网地址） | 见下一节做内网穿透 |
 
-`adb reverse` 是日常开发最省事的一条路：手机上的 `127.0.0.1:8080` 会被直接映射到你电脑的 8080，改代码、重装 App 都不用重新配地址。注意拔线、重启手机或执行过 `adb kill-server` 之后要重新执行一次。
+`adb reverse` 是日常开发最省事的一条路：手机上的 `127.0.0.1:8081` 会被直接映射到你电脑的 8081，改代码、重装 App 都不用重新配地址。注意拔线、重启手机或执行过 `adb kill-server` 之后要重新执行一次。
 
-如果地址填错了想改回来：**App → 我的 → 设置 → 服务器地址 → 恢复自动检测**。填新地址时只写 `192.168.1.5:8080` 或 `https://xxx.cpolar.cn` 这样的简写也行，App 会自动补协议、补 `/api/` 路径和结尾斜杠，并在保存后立即调 `/health` 自检。
+如果地址填错了想改回来：**App → 我的 → 设置 → 服务器地址 → 恢复自动检测**。填新地址时只写 `192.168.1.5:8081` 或 `https://xxx.cpolar.cn` 这样的简写也行，App 会自动补协议、补 `/api/` 路径和结尾斜杠，并在保存后立即调 `/health` 自检。
 
 ---
 
 ## 4. 内网穿透：让别人也能连上你的数据库
 
-后端和数据库都跑在你自己电脑上，`localhost` / `10.0.2.2` / `192.168.x.x` 对别人的手机来说都不可达。内网穿透的作用是给本机 8080 分配一个公网域名。
+后端和数据库都跑在你自己电脑上，`localhost` / `10.0.2.2` / `192.168.x.x` 对别人的手机来说都不可达。内网穿透的作用是给本机 8081 分配一个公网域名。
 
 以 [cpolar](https://www.cpolar.com/) 为例（ngrok 同理）：
 
@@ -114,9 +114,9 @@ App 的服务器地址按下面的优先级决定：
 # 1) 注册后在官网控制台拿到 authtoken，绑定一次即可
 cpolar authtoken 你的authtoken
 
-# 2) 把本地 8080 映射出去，窗口里会给出公网地址
-cpolar http 8080
-#   例如 https://39bd909b.r3.cpolar.cn  →  http://localhost:8080
+# 2) 把本地 8081 映射出去，窗口里会给出公网地址
+cpolar http 8081
+#   例如 https://39bd909b.r3.cpolar.cn  →  http://localhost:8081
 ```
 
 拿到域名后，地址要写成 **`https://<你的域名>/api/`**（`/api` 这个后端的 context-path 不能漏）。
@@ -186,7 +186,7 @@ cpolar http 8080
 大概率是服务器地址不对，或设置里残留了一个连不上的旧地址（它的优先级最高，每个请求会白等 30 秒）。先到「设置 → 服务器地址 → 恢复自动检测」，然后彻底关掉 App 重开。
 
 **模拟器连不上后端**
-模拟器里的"本机"不是你的电脑，必须用 `10.0.2.2`。确认后端在跑：电脑浏览器打开 `http://localhost:8080/api/health`。
+模拟器里的"本机"不是你的电脑，必须用 `10.0.2.2`。确认后端在跑：电脑浏览器打开 `http://localhost:8081/api/health`。
 
 **真机连电脑局域网 IP 失败**
 先确认两者在**同一网段**：电脑 `ipconfig`，手机看 Wi-Fi 详情。如果电脑是有线 `192.168.100.x`、手机是 Wi-Fi `192.168.110.x`，那是两个网络，直连必然失败，请改用 USB 线 + `adb reverse`，或走内网穿透。
@@ -195,7 +195,7 @@ cpolar http 8080
 Retrofit 要求地址以斜杠结尾。App 内填地址会自动补，手工改代码时注意。
 
 **启动报端口被占用**
-`8080` 被上一个没关干净的后端进程占着，结束旧的 java 进程或改 `SERVER_PORT`。
+本项目已固定用 `8081`，8080 留给其它程序。如果 8081 也被占，先看清楚是谁占的：`Get-NetTCPConnection -LocalPort 8081 -State Listen` 拿到 PID，再用 `Get-Process -Id <PID>` 确认是不是自己的旧后端，确认后再结束它，或者临时用 `$env:SERVER_PORT = "8082"` 换一个。
 
 **换了电脑，App 一直连不上**
 检查三处：MySQL 密码是否改了（`DB_PASSWORD`）、`SHARE_API_BASE_URL` 是否还是旧隧道域名、手机上设置页是否残留旧地址。

@@ -241,8 +241,8 @@ public class MainActivity extends AppCompatActivity {
 
 ```java
 public class ApiClient {
-    private static String BASE_URL_EMULATOR = "http://10.0.2.2:8080/api/";
-    private static String BASE_URL_REAL_DEVICE = "http://10.21.229.222:8080/api/";
+    private static String BASE_URL_EMULATOR = "http://10.0.2.2:8081/api/";
+    private static String BASE_URL_REAL_DEVICE = "http://10.21.229.222:8081/api/";
     
     private static ApiClient instance;
     private ApiService apiService;
